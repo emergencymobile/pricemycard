@@ -1,0 +1,39 @@
+{
+  "name": "PopularCardsCache",
+  "type": "object",
+  "properties": {
+    "ranking": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": true
+      },
+      "description": "Cached merged popularity ranking (top items with title, image, sources, link)."
+    },
+    "items_count": {
+      "type": "number",
+      "default": 0
+    }
+  },
+  "required": [
+    "ranking"
+  ],
+  "rls": {
+    "create": {
+      "user_condition": {
+        "role": "admin"
+      }
+    },
+    "read": null,
+    "update": {
+      "user_condition": {
+        "role": "admin"
+      }
+    },
+    "delete": {
+      "user_condition": {
+        "role": "admin"
+      }
+    }
+  }
+}

@@ -1,0 +1,48 @@
+{
+  "name": "SearchActivity",
+  "type": "object",
+  "properties": {
+    "keyword": {
+      "type": "string",
+      "description": "The player/card keyword the user searched or clicked a result for. Empty for 'visit' events."
+    },
+    "activity_type": {
+      "type": "string",
+      "enum": [
+        "search",
+        "click",
+        "visit"
+      ],
+      "description": "search = a keyword was searched; click = a user clicked through to an eBay result; visit = a guest landed on the site."
+    },
+    "listing_title": {
+      "type": "string",
+      "description": "For click events: the eBay listing title the user clicked (used as a display title in the popularity ranking)."
+    },
+    "listing_image": {
+      "type": "string",
+      "description": "For click events: the eBay listing image URL the user clicked (used as a thumbnail in the popularity ranking)."
+    }
+  },
+  "required": [
+    "activity_type"
+  ],
+  "rls": {
+    "create": null,
+    "read": {
+      "user_condition": {
+        "role": "admin"
+      }
+    },
+    "update": {
+      "user_condition": {
+        "role": "admin"
+      }
+    },
+    "delete": {
+      "user_condition": {
+        "role": "admin"
+      }
+    }
+  }
+}

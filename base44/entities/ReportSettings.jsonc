@@ -1,0 +1,32 @@
+{
+  "name": "ReportSettings",
+  "type": "object",
+  "properties": {
+    "auto_hide_threshold": {
+      "type": "number",
+      "default": 3,
+      "description": "Number of unique users that must report a listing before it is auto-hidden from search results."
+    }
+  },
+  "required": [
+    "auto_hide_threshold"
+  ],
+  "rls": {
+    "create": {
+      "user_condition": {
+        "role": "admin"
+      }
+    },
+    "read": null,
+    "update": {
+      "user_condition": {
+        "role": "admin"
+      }
+    },
+    "delete": {
+      "user_condition": {
+        "role": "admin"
+      }
+    }
+  }
+}

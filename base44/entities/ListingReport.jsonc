@@ -1,0 +1,52 @@
+{
+  "name": "ListingReport",
+  "type": "object",
+  "properties": {
+    "listing_url": {
+      "type": "string",
+      "description": "The eBay listing URL that was reported as irrelevant."
+    },
+    "listing_title": {
+      "type": "string",
+      "description": "Title of the reported eBay listing captured at report time."
+    },
+    "reported_from": {
+      "type": "string",
+      "description": "The card/player search page the report was submitted from."
+    },
+    "reason": {
+      "type": "string",
+      "enum": [
+        "wrong_card",
+        "wrong_variant",
+        "wrong_condition",
+        "duplicate",
+        "other"
+      ],
+      "description": "The selected reason the listing is irrelevant."
+    },
+    "comment": {
+      "type": "string",
+      "default": "",
+      "description": "Optional free-text note from the reporter."
+    }
+  },
+  "required": [
+    "listing_url",
+    "reason"
+  ],
+  "rls": {
+    "create": null,
+    "read": null,
+    "update": {
+      "user_condition": {
+        "role": "admin"
+      }
+    },
+    "delete": {
+      "user_condition": {
+        "role": "admin"
+      }
+    }
+  }
+}

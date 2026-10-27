@@ -1,0 +1,41 @@
+{
+  "name": "GuestSearchUsage",
+  "type": "object",
+  "properties": {
+    "ip_address": {
+      "type": "string",
+      "description": "SHA-256 hash of the guest visitor's IP address. Used to key the lifetime search count without storing raw IPs."
+    },
+    "search_count": {
+      "type": "number",
+      "default": 1,
+      "description": "Total number of market searches this guest has performed."
+    }
+  },
+  "required": [
+    "ip_address",
+    "search_count"
+  ],
+  "rls": {
+    "create": {
+      "user_condition": {
+        "role": "admin"
+      }
+    },
+    "read": {
+      "user_condition": {
+        "role": "admin"
+      }
+    },
+    "update": {
+      "user_condition": {
+        "role": "admin"
+      }
+    },
+    "delete": {
+      "user_condition": {
+        "role": "admin"
+      }
+    }
+  }
+}

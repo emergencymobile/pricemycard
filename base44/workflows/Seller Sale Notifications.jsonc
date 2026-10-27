@@ -1,0 +1,40 @@
+{
+  "description": "Notifies sellers when their listing is purchased and alerts them when a category drops below 3 items in stock",
+  "name": "Seller Sale Notifications",
+  "definition": {
+    "document": {
+      "dsl": "1.0.0",
+      "name": "seller_sale_notifications",
+      "version": "1.0",
+      "namespace": "base44"
+    },
+    "do": [
+      {
+        "notify_seller": {
+          "call": "invoke_backend_function",
+          "with": {
+            "function_name": "notifySellerOnSale",
+            "args": {
+              "order_id": "${ .trigger.entity_id }"
+            }
+          },
+          "then": "end",
+          "x-base44": {
+            "title": "Notify seller",
+            "description": "Sale confirmation + low-stock alert"
+          }
+        }
+      }
+    ]
+  },
+  "trigger": {
+    "condition": null,
+    "config": {
+      "trigger_type": "entity",
+      "events": [
+        "create"
+      ],
+      "entity_name": "Order"
+    }
+  }
+}

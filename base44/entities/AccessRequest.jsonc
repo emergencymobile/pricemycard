@@ -1,0 +1,60 @@
+{
+  "name": "AccessRequest",
+  "type": "object",
+  "properties": {
+    "user_id": {
+      "type": "string",
+      "description": "The user requesting free access. Null for anonymous (guest) requests submitted with just an email."
+    },
+    "user_email": {
+      "type": "string",
+      "description": "User's email \u2014 captured at submission for admin display and for anti-spam on anonymous requests."
+    },
+    "device_type": {
+      "type": "string",
+      "enum": [
+        "mobile",
+        "tablet",
+        "desktop",
+        "unknown"
+      ],
+      "description": "Device type detected from the request user agent."
+    },
+    "note": {
+      "type": "string",
+      "description": "The user's note explaining why they should get free access."
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "pending",
+        "approved",
+        "denied"
+      ],
+      "default": "pending"
+    }
+  },
+  "required": [
+    "user_email",
+    "note",
+    "status"
+  ],
+  "rls": {
+    "create": null,
+    "read": {
+      "user_condition": {
+        "role": "admin"
+      }
+    },
+    "update": {
+      "user_condition": {
+        "role": "admin"
+      }
+    },
+    "delete": {
+      "user_condition": {
+        "role": "admin"
+      }
+    }
+  }
+}

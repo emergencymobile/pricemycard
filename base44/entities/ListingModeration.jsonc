@@ -1,0 +1,48 @@
+{
+  "name": "ListingModeration",
+  "type": "object",
+  "properties": {
+    "listing_url": {
+      "type": "string",
+      "description": "The eBay listing URL under moderation."
+    },
+    "listing_title": {
+      "type": "string",
+      "description": "Title of the moderated listing captured for display."
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "manual_hide",
+        "manual_restore"
+      ],
+      "description": "manual_hide forces the listing hidden; manual_restore overrides auto-hide to keep it visible."
+    },
+    "notes": {
+      "type": "string",
+      "default": ""
+    }
+  },
+  "required": [
+    "listing_url",
+    "status"
+  ],
+  "rls": {
+    "create": {
+      "user_condition": {
+        "role": "admin"
+      }
+    },
+    "read": null,
+    "update": {
+      "user_condition": {
+        "role": "admin"
+      }
+    },
+    "delete": {
+      "user_condition": {
+        "role": "admin"
+      }
+    }
+  }
+}

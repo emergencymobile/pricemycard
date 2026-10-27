@@ -1,0 +1,42 @@
+{
+  "name": "ListingPriceHistory",
+  "type": "object",
+  "properties": {
+    "listing_id": {
+      "type": "string",
+      "description": "The listing this price snapshot belongs to."
+    },
+    "price": {
+      "type": "number",
+      "description": "Listing asking price in AED captured at the snapshot date."
+    },
+    "date": {
+      "type": "string",
+      "format": "date",
+      "description": "Snapshot date (YYYY-MM-DD). One snapshot per listing per day."
+    }
+  },
+  "required": [
+    "listing_id",
+    "price",
+    "date"
+  ],
+  "rls": {
+    "create": {
+      "user_condition": {
+        "role": "admin"
+      }
+    },
+    "read": null,
+    "update": {
+      "user_condition": {
+        "role": "admin"
+      }
+    },
+    "delete": {
+      "user_condition": {
+        "role": "admin"
+      }
+    }
+  }
+}

@@ -1,0 +1,73 @@
+{
+  "name": "PremiumSubscription",
+  "type": "object",
+  "properties": {
+    "user_id": {
+      "type": "string",
+      "description": "The app user who owns this subscription."
+    },
+    "stripe_customer_id": {
+      "type": "string",
+      "description": "Stripe customer object ID."
+    },
+    "stripe_subscription_id": {
+      "type": "string",
+      "description": "Stripe subscription object ID."
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "active",
+        "canceled",
+        "past_due",
+        "trialing",
+        "incomplete"
+      ],
+      "default": "active",
+      "description": "Current Stripe subscription status."
+    },
+    "current_period_end": {
+      "type": "string",
+      "format": "date-time",
+      "description": "End of the current billing period."
+    },
+    "plan": {
+      "type": "string",
+      "default": "premium_search"
+    }
+  },
+  "required": [
+    "user_id",
+    "stripe_subscription_id",
+    "status"
+  ],
+  "rls": {
+    "create": {
+      "user_condition": {
+        "role": "admin"
+      }
+    },
+    "read": {
+      "$or": [
+        {
+          "data.user_id": "{{user.id}}"
+        },
+        {
+          "user_condition": {
+            "role": "admin"
+          }
+        }
+      ]
+    },
+    "update": {
+      "user_condition": {
+        "role": "admin"
+      }
+    },
+    "delete": {
+      "user_condition": {
+        "role": "admin"
+      }
+    }
+  }
+}
